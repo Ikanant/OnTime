@@ -14,8 +14,8 @@ class _LandingPage extends State<LandingPage> {
   var _driveDuration = '...';
 
   _getDriveDuration() async {
-    var apiKey = 'AIzaSyBOUMv5vIJ4C6HxYsFpKybAYjLe9V4pVBE';
-    var url = 'https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=Carrboro,NC,27510&destinations=Raleigh,NC&key=' + apiKey;
+    var apiKey = 'AIzaSyD-ypp-3Uyq3BRDgJrwXnFD4u7FZrkE3Fc';
+    var url = 'https://maps.googleapis.com/maps/api/directions/json?origin=140%20BPW%20Club%20Rd,%20Carrboro%20,NC&destination=Raleigh,NC&key=' + apiKey;
     var httpClient = new HttpClient();
 
     String result;
@@ -25,7 +25,7 @@ class _LandingPage extends State<LandingPage> {
       if (response.statusCode == HttpStatus.OK) {
         var json = await response.transform(UTF8.decoder).join();
         var data = JSON.decode(json);
-        result = data['rows'][0]['elements'][0]['duration']['text'];
+        result = data['routes'][0]['legs'][0]['duration']['text'];
       } else {
         result =
             'Error getting drive estimate:\nHttp status ${response.statusCode}';
