@@ -59,7 +59,7 @@ class _LandingPage extends State<LandingPage> {
       body: new Center(
         child: new Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
+          children: <Widget>[ 
             new Text(
               'Today I will make it to work in:',
               style: new TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.white),),
