@@ -25,7 +25,7 @@ class _LandingPage extends State<LandingPage> {
       if (response.statusCode == HttpStatus.OK) {
         var json = await response.transform(UTF8.decoder).join();
         var data = JSON.decode(json);
-        result = data['routes'][0]['legs'][0]['duration']['text'];
+        result = _getDurationMessage(data);
       } else {
         result =
             'Error getting drive estimate:\nHttp status ${response.statusCode}';
@@ -42,6 +42,14 @@ class _LandingPage extends State<LandingPage> {
     setState(() {
       _driveDuration = result;
     });
+  }
+
+  _getDurationMessage(data) {
+    var message = data['routes'][0]['legs'][0]['duration']['text'];
+
+    // TODO: perform some string manipulation to the message
+
+    return message;
   }
 
   @override
