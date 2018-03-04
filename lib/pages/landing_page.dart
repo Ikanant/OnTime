@@ -46,7 +46,7 @@ class _LandingPage extends State<LandingPage> {
     setState(() {
       _driveDuration = result;
     });
-  }
+  } 
 
   @override
   Widget build(BuildContext context) {
