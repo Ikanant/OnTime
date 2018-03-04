@@ -13,13 +13,13 @@ class LandingPage extends StatefulWidget {
 
 class _LandingPage extends State<LandingPage> {
   var _driveDuration = '...';
-  var _originAddress = "";
+  var _originAddress;
+  var _destinationAddress;
 
   _getDriveDuration() async {
     var apiKey = 'AIzaSyBOUMv5vIJ4C6HxYsFpKybAYjLe9V4pVBE';
-    var url = 'https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins='  + _originAddress + '&destinations=Raleigh,NC&key=' + apiKey;
+    var url = 'https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins='  + _originAddress + '&destinations=' + _destinationAddress + '&key=' + apiKey;
 
-    print (url);
     var httpClient = new HttpClient();
 
     String result;
@@ -52,7 +52,8 @@ class _LandingPage extends State<LandingPage> {
   Widget build(BuildContext context) {
     var spacer = new SizedBox(height: 32.0);
     final TextEditingController _controller = new TextEditingController();
-    var addressInputComponent = new AddressInput();
+    var originAddressInputComponent = new AddressInput();
+    var destinationAddressInputComponent = new AddressInput();
 
     return new Scaffold(
       backgroundColor: Colors.blueAccent,
@@ -63,7 +64,8 @@ class _LandingPage extends State<LandingPage> {
             new Text(
               'Today I will make it to work in:',
               style: new TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.white),),
-            addressInputComponent,
+            originAddressInputComponent,
+            destinationAddressInputComponent,
             new Text(
               '$_driveDuration',
               style: new TextStyle(fontSize: 20.0, fontStyle: FontStyle.italic, color: Colors.white),),
@@ -71,7 +73,8 @@ class _LandingPage extends State<LandingPage> {
             new RaisedButton(
               color: Colors.white,
               onPressed: () {
-                _originAddress = addressInputComponent.address;
+                _originAddress = originAddressInputComponent.address;
+                _destinationAddress = destinationAddressInputComponent.address;
                 _getDriveDuration();
               },
               child: new Text('Get Travel time'),

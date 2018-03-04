@@ -21,7 +21,7 @@ class AddressInputState extends State<AddressInput> with SingleTickerProviderSta
         padding: new EdgeInsets.symmetric(vertical: 30.0, horizontal: 50.0),
         child: new Center(
           child: new TextField(
-            onChanged: (text) { widget._originAddress = text.toString(); },
+            onChanged: (text) { widget._originAddress = _controller.text; },
             controller: _controller,
             decoration: new InputDecoration(
               hintStyle: new TextStyle(
